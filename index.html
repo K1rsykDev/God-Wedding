@@ -155,27 +155,36 @@
     }
     .file-input {
       position: relative;
-      border: 1px dashed rgba(231, 192, 122, 0.35);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border: 1px solid rgba(231, 192, 122, 0.35);
       border-radius: 14px;
       padding: 14px 16px;
-      background: rgba(231, 192, 122, 0.03);
+      background: linear-gradient(135deg, rgba(231,192,122,0.05), rgba(143,92,255,0.06));
       cursor: pointer;
-      transition: border 0.2s, background 0.2s;
+      transition: border 0.2s, background 0.2s, transform 0.12s;
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 600;
+      min-height: 52px;
     }
-    .file-input:hover { background: rgba(231,192,122,0.06); }
+    .file-input:hover { background: rgba(231,192,122,0.08); border-color: var(--gold-strong); transform: translateY(-1px); }
     .file-input input { display: none; }
-    .file-label { display: flex; align-items: center; gap: 10px; color: var(--text); }
+    .file-label { display: inline-flex; align-items: center; gap: 10px; }
     .file-pill {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 22px; height: 22px;
-      border-radius: 8px;
-      background: rgba(231,192,122,0.15);
-      color: var(--gold-strong);
-      font-weight: 700;
+      width: 26px; height: 26px;
+      border-radius: 10px;
+      background: rgba(231,192,122,0.2);
+      color: #180f24;
+      font-weight: 800;
+      box-shadow: 0 0 0 4px rgba(231,192,122,0.08);
     }
-    .hint { margin: 4px 0 0; color: var(--muted); font-size: 0.9rem; }
+    .file-label .text { display: inline-flex; flex-direction: column; line-height: 1.3; }
+    .hint { margin: 6px 0 0; color: var(--muted); font-size: 0.9rem; }
     .submit { margin-top: 6px; padding: 14px 16px; border-radius: 14px; border: 1px solid rgba(231,192,122,0.4); background: linear-gradient(135deg, #b07aff, #f4d499); color: #180f24; font-weight: 700; letter-spacing: 0.02em; cursor: pointer; transition: transform 0.15s, box-shadow 0.2s; font-size: 1rem; }
     .submit:hover { transform: translateY(-1px); box-shadow: 0 14px 36px rgba(0,0,0,0.45); }
     .submit:disabled { opacity: 0.6; cursor: not-allowed; }
@@ -247,7 +256,13 @@
             <label for="location">Місце проведення (скріншот з мапи GTA 5)</label>
             <label class="file-input" for="location">
               <input id="location" name="location" type="file" accept="image/*" required />
-              <span class="file-label"><span class="file-pill">+</span>Додати скріншот</span>
+              <span class="file-label">
+                <span class="file-pill">+</span>
+                <span class="text">
+                  <strong>Додати скріншот</strong>
+                  <span style="color: var(--muted); font-weight: 500;">PNG / JPG / WEBP</span>
+                </span>
+              </span>
             </label>
             <p class="hint">Завантажте зображення місця проведення. Фото буде прикріплене до Embed у Discord.</p>
           </div>
@@ -343,13 +358,17 @@
       const payload = { username: 'Church Wedding Herald', embeds: [embed] };
       const formData = new FormData();
       formData.append('payload_json', JSON.stringify(payload));
-      formData.append('file', file, attachmentName);
+      formData.append('files[0]', file, attachmentName);
 
       try {
         const response = await fetch(DISCORD_WEBHOOK, { method: 'POST', body: formData });
-        if (!response.ok) throw new Error(`Discord відповів зі статусом ${response.status}`);
+        if (!response.ok) {
+          const errorBody = await response.text();
+          throw new Error(`Discord відповів зі статусом ${response.status}: ${errorBody || 'невідомо'}`);
+        }
         statusBox.textContent = 'Заявка надіслана. Очікуйте підтвердження в Discord.';
         statusBox.style.display = 'block';
+        statusBox.classList.remove('error');
         form.reset();
       } catch (error) {
         console.error(error);
