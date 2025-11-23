@@ -4,11 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Таїнство шлюбу | GTA 5 RP</title>
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-
   <style>
     :root {
       --bg: #0e0915;
@@ -187,96 +185,38 @@
     }
     .file-label .text { display: inline-flex; flex-direction: column; line-height: 1.3; }
     .hint { margin: 6px 0 0; color: var(--muted); font-size: 0.9rem; }
-    .submit {
-      margin-top: 6px;
-      padding: 14px 16px;
-      border-radius: 14px;
-      border: 1px solid rgba(231,192,122,0.4);
-      background: linear-gradient(135deg, #b07aff, #f4d499);
-      color: #180f24;
-      font-weight: 700;
-      letter-spacing: 0.02em;
-      cursor: pointer;
-      transition: transform 0.15s, box-shadow 0.2s;
-      font-size: 1rem;
-    }
+    .submit { margin-top: 6px; padding: 14px 16px; border-radius: 14px; border: 1px solid rgba(231,192,122,0.4); background: linear-gradient(135deg, #b07aff, #f4d499); color: #180f24; font-weight: 700; letter-spacing: 0.02em; cursor: pointer; transition: transform 0.15s, box-shadow 0.2s; font-size: 1rem; }
     .submit:hover { transform: translateY(-1px); box-shadow: 0 14px 36px rgba(0,0,0,0.45); }
     .submit:disabled { opacity: 0.6; cursor: not-allowed; }
-    .status {
-      display: none;
-      padding: 12px 14px;
-      border-radius: 12px;
-      border: 1px solid rgba(231,192,122,0.35);
-      background: rgba(231,192,122,0.07);
-      color: var(--text);
-      font-size: 0.95rem;
-    }
-    .status.error {
-      border-color: #ffb3b3;
-      background: rgba(255,99,99,0.08);
-    }
-
-    /* ------------------------------------- */
-    /*           АДМІН - ПАНЕЛЬ              */
-    /* ------------------------------------- */
-    .admin-panel {
-      margin-top: 40px;
-      padding: 26px;
-      border-radius: 18px;
-      background: rgba(24,18,31,0.75);
-      border: 1px solid rgba(231,192,122,0.25);
-      box-shadow: 0 18px 42px rgba(0,0,0,0.55);
-    }
-    .admin-panel h2 {
-      margin: 0 0 10px;
-      font-family: 'Cinzel', serif;
-      color: var(--gold-strong);
-      letter-spacing: 0.05em;
-    }
-    .admin-note {
-      color: var(--muted);
-      margin-bottom: 20px;
-    }
-    .admin-list {
+    .status { display: none; padding: 12px 14px; border-radius: 12px; border: 1px solid rgba(231,192,122,0.35); background: rgba(231,192,122,0.07); color: var(--text); font-size: 0.95rem; }
+    .status.error { border-color: #ffb3b3; background: rgba(255,99,99,0.08); }
+    .info {
+      padding: 18px 22px 22px;
       display: grid;
-      gap: 18px;
-    }
-    .admin-card {
-      background: rgba(231,192,122,0.05);
-      padding: 18px;
-      border-radius: 14px;
-      border: 1px solid rgba(231,192,122,0.25);
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .admin-card h3 {
-      margin: 0;
-      color: var(--gold);
-      font-family: 'Cinzel', serif;
-    }
-    .admin-row {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-    .admin-img {
-      width: 180px;
-      border-radius: 10px;
-      border: 1px solid rgba(231,192,122,0.25);
-      margin-top: 10px;
-      cursor: pointer;
-      transition: 0.2s;
-    }
-    .admin-img:hover { transform: scale(1.02); }
-    .no-data {
-      padding: 20px;
-      text-align: center;
+      gap: 12px;
+      line-height: 1.55;
       color: var(--muted);
+      font-size: 0.98rem;
     }
+    .info strong { color: var(--gold-strong); }
+    .cta-row { display: flex; flex-wrap: wrap; gap: 10px; }
+    .ghost-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(231,192,122,0.25);
+      background: rgba(231,192,122,0.04);
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+      transition: border 0.2s, background 0.2s;
+    }
+    .ghost-btn:hover { border-color: var(--gold-strong); background: rgba(231,192,122,0.08); }
+    footer { text-align: center; color: var(--muted); font-size: 0.95rem; padding: 28px 12px 20px; }
   </style>
 </head>
-
 <body>
   <div class="container">
     <div class="hero">
@@ -288,216 +228,159 @@
     </div>
 
     <div class="layout">
-      <section class="panel">
+      <section class="panel" aria-label="Форма подання заявки">
         <div class="panel-header">
           <h2 class="panel-title">Форма заявки</h2>
           <span class="badge">Ceremony</span>
         </div>
-
         <form id="wedding-form">
           <div>
-            <label>NickName та Static чоловіка</label>
-            <input class="input" id="groom" type="text" placeholder="God Father | #1111" required>
+            <label for="groom">NickName та Static чоловіка</label>
+            <input class="input" id="groom" name="groom" type="text" placeholder="God Father | #1111" required />
           </div>
           <div>
-            <label>NickName та Static жінки</label>
-            <input class="input" id="bride" type="text" placeholder="Diva Maria | #2222" required>
+            <label for="bride">NickName та Static жінки</label>
+            <input class="input" id="bride" name="bride" type="text" placeholder="Diva Maria | #2222" required />
           </div>
-
           <div class="row">
             <div>
-              <label>Дата</label>
-              <input class="input" id="wedding-date" type="date" required>
+              <label for="wedding-date">Дата</label>
+              <input class="input" id="wedding-date" name="date" type="date" required />
             </div>
             <div>
-              <label>Час</label>
-              <input class="input" id="wedding-time" type="time" required>
+              <label for="wedding-time">Час</label>
+              <input class="input" id="wedding-time" name="time" type="time" required />
             </div>
           </div>
-
           <div>
-            <label>Місце проведення (скріншот з мапи)</label>
-            <label class="file-input">
-              <input id="location" type="file" accept="image/*" required>
+            <label for="location">Місце проведення (скріншот з мапи GTA 5)</label>
+            <label class="file-input" for="location">
+              <input id="location" name="location" type="file" accept="image/*" required />
               <span class="file-label">
                 <span class="file-pill">+</span>
                 <span class="text">
                   <strong>Додати скріншот</strong>
-                  <span style="color:var(--muted)">PNG / JPG / WEBP</span>
+                  <span style="color: var(--muted); font-weight: 500;">PNG / JPG / WEBP</span>
                 </span>
               </span>
             </label>
+            <p class="hint">Завантажте зображення місця проведення. Фото буде прикріплене до Embed у Discord.</p>
           </div>
-
           <button class="submit" type="submit">Надіслати</button>
-          <div class="status" id="status"></div>
+          <div class="status" id="status" role="alert"></div>
         </form>
       </section>
 
-      <aside class="panel">
+      <aside class="panel" aria-label="Духовні настанови">
         <div class="panel-header">
           <h2 class="panel-title">Церковний супровід</h2>
           <span class="badge">Discord</span>
         </div>
         <div class="info">
-          <p>Ми благословимо союз двох сердець та проведемо урочисту церемонію.</p>
-          <p>Після надсилання заявки в Discord вам надійде підтвердження.</p>
+          <p>Ми благословимо союз двох сердець і допоможемо провести урочисту церемонію за нашими канонами та найкращими традиціями. Святі свічки, молитви та щира підтримка кожної родини.</p>
+          <p>Після відправлення заявки в Discord вам надійде повідомлення із деталями та уточненнями.</p>
+          <div class="cta-row">
+            <a class="ghost-btn" href="#">Свічки віри</a>
+            <a class="ghost-btn" href="#">Молитовник</a>
+            <a class="ghost-btn" href="#">Церковні дані</a>
+          </div>
         </div>
       </aside>
     </div>
-
-    <!-- АДМІН ПАНЕЛЬ -->
-    <div class="admin-panel">
-      <h2>Адмін-панель — Заявки</h2>
-      <p class="admin-note">Всі заявки зберігаються на вашому пристрої.</p>
-      <div id="adminList" class="admin-list"></div>
-    </div>
-
   </div>
 
+  <footer>з благословенням | ми чекаємо кожну пару</footer>
+
   <script>
-    // --------------------------
-    //  DISCORD WEBHOOK
-    // --------------------------
-    const DISCORD_WEBHOOK =
-      "https://discord.com/api/webhooks/1441998164402896908/MAvHd2ksJI7lFfOcFrAzZ1_5xzXJWow14an_Z-0dAcY8HdeM1AAheZbKX1mpXKB_0jEh";
+    const DISCORD_WEBHOOK = "https://discord.com/api/webhooks/1441998164402896908/MAvHd2ksJI7lFfOcFrAzZ1_5xzXJWow14an_Z-0dAcY8HdeM1AAheZbKX1mpXKB_0jEh";
+    const form = document.getElementById('wedding-form');
+    const statusBox = document.getElementById('status');
 
-    const form = document.getElementById("wedding-form");
-    const statusBox = document.getElementById("status");
-
-    // --------------------------
-    //  ФУНКЦІЇ ДАТИ/ЧАСУ
-    // --------------------------
-    const buildDateTime = (d, t) => {
-      const iso = new Date(`${d}T${t}`);
-      return iso.toISOString();
+    const buildDateTime = (dateValue, timeValue) => {
+      if (!dateValue && !timeValue) return '';
+      const isoDate = dateValue || new Date().toISOString().split('T')[0];
+      const isoTime = timeValue || '12:00';
+      const combined = new Date(`${isoDate}T${isoTime}`);
+      return Number.isNaN(combined.getTime()) ? '' : combined.toISOString();
     };
 
     const formatDateTime = (iso) => {
+      if (!iso) return 'Не вказано';
       const d = new Date(iso);
-      return d.toLocaleString("uk-UA");
+      return d.toLocaleString('uk-UA', {
+        weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
+        hour: '2-digit', minute: '2-digit'
+      });
     };
 
-    // --------------------------
-    //  АДМІН ПАНЕЛЬ — збереження
-    // --------------------------
-    function saveApplication(app) {
-      const list = JSON.parse(localStorage.getItem("weddingApps") || "[]");
-      list.push(app);
-      localStorage.setItem("weddingApps", JSON.stringify(list));
-    }
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      statusBox.style.display = 'none';
+      statusBox.classList.remove('error');
 
-    function renderAdminPanel() {
-      const list = JSON.parse(localStorage.getItem("weddingApps") || "[]");
-      const adminList = document.getElementById("adminList");
-
-      if (list.length === 0) {
-        adminList.innerHTML = '<div class="no-data">Немає заявок</div>';
+      if (!DISCORD_WEBHOOK || DISCORD_WEBHOOK.includes("https://discord.com/api/webhooks/1441998164402896908/MAvHd2ksJI7lFfOcFrAzZ1_5xzXJWow14an_Z-0dAcY8HdeM1AAheZbKX1mpXKB_0jEh")) {
+        statusBox.textContent = 'Вкажіть дійсний WebHook у коді (DISCORD_WEBHOOK).';
+        statusBox.classList.add('error');
+        statusBox.style.display = 'block';
         return;
       }
 
-      adminList.innerHTML = "";
-
-      list.forEach((app, i) => {
-        const card = document.createElement("div");
-        card.className = "admin-card";
-
-        card.innerHTML = `
-          <h3>Заявка №${i + 1}</h3>
-          <div class="admin-row"><strong>Чоловік:</strong> ${app.groom}</div>
-          <div class="admin-row"><strong>Жінка:</strong> ${app.bride}</div>
-          <div class="admin-row"><strong>Дата:</strong> ${app.date}</div>
-          <div class="admin-row"><strong>Час:</strong> ${app.time}</div>
-          <div class="admin-row">
-            <strong>Локація:</strong><br>
-            <img src="${app.image}" class="admin-img"
-              onclick="window.open('${app.image}', '_blank')">
-          </div>
-        `;
-
-        adminList.appendChild(card);
-      });
-    }
-
-    renderAdminPanel();
-
-    // --------------------------
-    //  ОБРОБНИК ФОРМИ
-    // --------------------------
-    form.addEventListener("submit", async (event) => {
-      event.preventDefault();
-
-      statusBox.style.display = "none";
-      statusBox.classList.remove("error");
-
-      const groom = document.getElementById("groom").value;
-      const bride = document.getElementById("bride").value;
-      const date = document.getElementById("wedding-date").value;
-      const time = document.getElementById("wedding-time").value;
-      const file = document.getElementById("location").files[0];
+      const groom = form.groom.value.trim();
+      const bride = form.bride.value.trim();
+      const date = form['wedding-date'].value;
+      const time = form['wedding-time'].value;
+      const file = form.location.files[0];
 
       if (!file) {
-        statusBox.textContent = "Додайте фото локації.";
-        statusBox.classList.add("error");
-        statusBox.style.display = "block";
+        statusBox.textContent = 'Додайте скріншот місця проведення.';
+        statusBox.classList.add('error');
+        statusBox.style.display = 'block';
         return;
       }
 
-      const iso = buildDateTime(date, time);
-      const pretty = formatDateTime(iso);
-      const fileName = file.name;
+      const isoDate = buildDateTime(date, time);
+      const prettyDate = formatDateTime(isoDate);
+      const attachmentName = file.name || 'wedding-location.png';
 
       const embed = {
-        title: "Нова церковна заявка",
+        title: 'Нова церковна заявка на весілля',
         color: 0xe7c07a,
         fields: [
-          { name: "Чоловік", value: groom },
-          { name: "Жінка", value: bride },
-          { name: "Дата і час", value: pretty }
+          { name: 'Чоловік', value: groom || 'Не вказано', inline: false },
+          { name: 'Жінка', value: bride || 'Не вказано', inline: false },
+          { name: 'Дата та час', value: prettyDate, inline: false }
         ],
-        image: { url: `attachment://${fileName}` },
-        timestamp: iso
+        image: { url: `attachment://${attachmentName}` },
+        timestamp: isoDate || new Date().toISOString(),
+        footer: { text: 'Таїнство любові та благословення' }
       };
 
       const payload = {
-        username: "Church Wedding Herald",
+        username: 'Church Wedding Herald',
         embeds: [embed],
-        attachments: [{ id: 0, filename: fileName }]
+        attachments: [{ id: 0, filename: attachmentName }]
       };
-
       const formData = new FormData();
-      formData.append("payload_json", JSON.stringify(payload));
-      formData.append("files[0]", file, fileName);
+      formData.append('payload_json', JSON.stringify(payload));
+      formData.append('files[0]', file, attachmentName);
 
       try {
-        await fetch(DISCORD_WEBHOOK, { method: "POST", body: formData });
-
-        statusBox.textContent = "Успішно надіслано!";
-        statusBox.style.display = "block";
-
-        // ЗБЕРЕЖЕННЯ В АДМІН ПАНЕЛЬ
-        const reader = new FileReader();
-        reader.onload = () => {
-          saveApplication({
-            groom,
-            bride,
-            date,
-            time,
-            image: reader.result
-          });
-          renderAdminPanel();
-        };
-        reader.readAsDataURL(file);
-
+        const response = await fetch(`${DISCORD_WEBHOOK}?wait=true`, { method: 'POST', body: formData });
+        if (!response.ok) {
+          const errorBody = await response.text();
+          throw new Error(`Discord відповів зі статусом ${response.status}: ${errorBody || 'невідомо'}`);
+        }
+        statusBox.textContent = 'Заявка надіслана. Очікуйте підтвердження в Discord.';
+        statusBox.style.display = 'block';
+        statusBox.classList.remove('error');
         form.reset();
-
-      } catch (err) {
-        statusBox.textContent = "Помилка надсилання!";
-        statusBox.style.display = "block";
-        statusBox.classList.add("error");
+      } catch (error) {
+        console.error(error);
+        statusBox.textContent = `Не вдалося надіслати. Перевірте WebHook або спробуйте ще раз. Деталі: ${error.message}`;
+        statusBox.classList.add('error');
+        statusBox.style.display = 'block';
       }
     });
   </script>
-
 </body>
 </html>
