@@ -171,13 +171,18 @@
       font-weight: 600;
       min-height: 52px;
     }
-    .file-input:hover { background: rgba(231,192,122,0.08); border-color: var(--gold-strong); transform: translateY(-1px); }
+    .file-input:hover {
+      background: rgba(231,192,122,0.08);
+      border-color: var(--gold-strong);
+      transform: translateY(-1px);
+    }
     .file-input input { display: none; }
     .file-pill {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 26px; height: 26px;
+      width: 26px;
+      height: 26px;
       border-radius: 10px;
       background: rgba(231,192,122,0.2);
       color: #180f24;
@@ -194,6 +199,7 @@
       transition: transform 0.15s, box-shadow 0.2s; font-size: 1rem;
     }
     .submit:hover { transform: translateY(-1px); box-shadow: 0 14px 36px rgba(0,0,0,0.45); }
+
     .status {
       display: none; padding: 12px 14px; border-radius: 12px;
       border: 1px solid rgba(231,192,122,0.35);
@@ -201,6 +207,7 @@
       font-size: 0.95rem;
     }
     .status.error { border-color: #ffb3b3; background: rgba(255,99,99,0.08); }
+
     .info {
       padding: 18px 22px 22px;
       display: grid;
@@ -224,6 +231,7 @@
       transition: border 0.2s, background 0.2s;
     }
     .ghost-btn:hover { border-color: var(--gold-strong); background: rgba(231,192,122,0.08); }
+
     footer {
       text-align: center;
       color: var(--muted);
@@ -250,6 +258,7 @@
         </div>
 
         <form id="wedding-form">
+          
           <div>
             <label for="groom">NickName та Static чоловіка</label>
             <input class="input" id="groom" name="groom" type="text" placeholder="God Father | #1111" required />
@@ -258,6 +267,12 @@
           <div>
             <label for="bride">NickName та Static жінки</label>
             <input class="input" id="bride" name="bride" type="text" placeholder="Diva Maria | #2222" required />
+          </div>
+
+          <!-- НОВА СТРОЧКА -->
+          <div>
+            <label for="contact">Спосіб зв’язку з вами (Discord)</label>
+            <input class="input" id="contact" name="contact" type="text" placeholder="example#0001" required />
           </div>
 
           <div class="row">
@@ -333,6 +348,7 @@
 
       const groom = form.groom.value.trim();
       const bride = form.bride.value.trim();
+      const contact = form.contact.value.trim();
       const date = form['wedding-date'].value;
       const time = form['wedding-time'].value;
       const file = form.location.files[0];
@@ -354,6 +370,7 @@
         fields: [
           { name: 'Чоловік', value: groom || 'Не вказано', inline: false },
           { name: 'Жінка', value: bride || 'Не вказано', inline: false },
+          { name: 'Контакт Discord', value: contact || 'Не вказано', inline: false },
           { name: 'Дата та час', value: prettyDate, inline: false }
         ],
         image: { url: `attachment://${attachmentName}` },
