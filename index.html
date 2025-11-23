@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
   <style>
     :root {
       --bg: #0e0915;
@@ -15,402 +16,312 @@
       --gold-strong: #f4d499;
       --text: #e8e2f0;
       --muted: #bdb4c9;
-      --accent: #8f5cff;
     }
     * { box-sizing: border-box; }
     body {
-      margin: 0;
-      min-height: 100vh;
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      margin: 0; min-height: 100vh;
+      font-family: 'Inter', sans-serif;
       color: var(--text);
       background: radial-gradient(circle at 20% 20%, rgba(231,192,122,0.07), transparent 35%),
                   radial-gradient(circle at 80% 0%, rgba(170,132,255,0.12), transparent 35%),
                   radial-gradient(circle at 40% 70%, rgba(231,192,122,0.08), transparent 30%),
                   linear-gradient(135deg, #090610, #140c1c 45%, #0e0915);
     }
-    .halo::before,
-    .halo::after {
-      content: '';
-      position: absolute;
-      inset: -6px;
-      border-radius: inherit;
-      background: linear-gradient(135deg, rgba(231,192,122,0.45), rgba(170,132,255,0.25));
-      filter: blur(20px);
-      opacity: 0.85;
-      z-index: 0;
-    }
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 48px 18px 64px;
-    }
-    .hero {
-      position: relative;
-      text-align: center;
-      padding: 32px 16px 22px;
-    }
+    .container { max-width: 1200px; margin:0 auto; padding:48px 18px; }
+    .hero { text-align:center; padding:32px 16px; }
     .hero-title {
-      display: inline-flex;
-      align-items: center;
-      gap: 16px;
-      background: rgba(24, 18, 31, 0.6);
-      border: 1px solid rgba(231, 192, 122, 0.3);
-      border-radius: 999px;
-      padding: 12px 22px;
-      font-family: 'Cinzel', serif;
-      font-size: clamp(1.15rem, 2vw, 1.35rem);
-      letter-spacing: 0.08em;
-      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.6);
-      position: relative;
-      z-index: 1;
+      display:inline-flex; align-items:center; gap:16px;
+      background:rgba(24,18,31,0.6);
+      border:1px solid rgba(231,192,122,0.3);
+      padding:12px 22px; border-radius:999px;
+      font-family:'Cinzel',serif; font-size:1.35rem;
     }
-    .hero-title span.icon {
-      display: inline-flex;
-      width: 26px;
-      height: 26px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 30% 30%, var(--gold-strong), var(--gold));
-      color: #1a0f24;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      box-shadow: 0 0 0 5px rgba(231,192,122,0.1), 0 0 28px rgba(231,192,122,0.35);
-    }
-    .hero p {
-      margin: 12px auto 0;
-      max-width: 680px;
-      color: var(--muted);
-      line-height: 1.5;
-      font-size: 0.98rem;
+    .hero-title .icon {
+      width:26px; height:26px; border-radius:50%;
+      background:radial-gradient(circle at 30% 30%, var(--gold-strong), var(--gold));
+      display:flex; align-items:center; justify-content:center;
+      font-weight:700; color:#1a0f24;
     }
     .layout {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 18px;
-      margin-top: 24px;
+      display:grid; grid-template-columns:1.1fr 0.9fr;
+      gap:18px; margin-top:24px;
     }
-    @media (max-width: 980px) {
-      .layout { grid-template-columns: 1fr; }
-    }
+    @media(max-width:980px){ .layout{grid-template-columns:1fr;} }
+
     .panel {
-      position: relative;
-      background: var(--panel);
-      border: 1px solid rgba(231, 192, 122, 0.25);
-      border-radius: 18px;
-      box-shadow: 0 18px 42px rgba(0,0,0,0.55);
-      overflow: hidden;
-    }
-    .panel::after {
-      content: '';
-      position: absolute;
-      inset: 1px;
-      border-radius: 16px;
-      border: 1px solid rgba(231, 192, 122, 0.14);
-      pointer-events: none;
+      background:var(--panel);
+      border-radius:18px;
+      border:1px solid rgba(231,192,122,0.25);
+      box-shadow:0 18px 42px rgba(0,0,0,0.55);
+      overflow:hidden;
     }
     .panel-header {
-      padding: 18px 22px;
-      border-bottom: 1px solid rgba(231, 192, 122, 0.16);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
+      padding:18px 22px;
+      border-bottom:1px solid rgba(231,192,122,0.16);
+      display:flex; justify-content:space-between; align-items:center;
     }
-    .panel-title {
-      margin: 0;
-      font-family: 'Cinzel', serif;
-      letter-spacing: 0.06em;
-      color: var(--gold-strong);
-      font-size: 1.05rem;
-    }
+    .panel-title { margin:0; font-family:'Cinzel',serif; color:var(--gold-strong); }
     .badge {
-      background: rgba(231,192,122,0.18);
-      color: var(--gold-strong);
-      padding: 8px 12px;
-      border-radius: 14px;
-      font-weight: 600;
-      font-size: 0.9rem;
-      border: 1px solid rgba(231,192,122,0.35);
+      background:rgba(231,192,122,0.18); color:var(--gold-strong);
+      padding:8px 12px; border-radius:14px;
+      border:1px solid rgba(231,192,122,0.35);
     }
-    form { padding: 18px 22px 22px; display: flex; flex-direction: column; gap: 14px; }
-    label { color: var(--muted); font-size: 0.92rem; }
+
+    form { padding:20px 22px; display:flex; flex-direction:column; gap:16px; }
+    label { color:var(--muted); font-size:0.92rem; }
     .input {
-      width: 100%;
-      padding: 12px 14px;
-      border-radius: 12px;
-      border: 1px solid rgba(231, 192, 122, 0.2);
-      background: rgba(231, 192, 122, 0.04);
-      color: var(--text);
-      font-size: 1rem;
-      transition: border 0.2s, box-shadow 0.2s, background 0.2s;
+      width:100%; padding:12px 14px; border-radius:12px;
+      background:rgba(231,192,122,0.04);
+      border:1px solid rgba(231,192,122,0.2);
+      color:var(--text);
     }
     .input:focus {
-      outline: none;
-      border-color: var(--gold-strong);
-      background: rgba(231,192,122,0.07);
-      box-shadow: 0 0 0 3px rgba(231,192,122,0.18);
+      background:rgba(231,192,122,0.07);
+      border-color:var(--gold-strong);
+      outline:none;
     }
-    .row {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 12px;
-    }
+
+    .row { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px; }
+
     .file-input {
-      position: relative;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      border: 1px solid rgba(231, 192, 122, 0.35);
-      border-radius: 14px;
-      padding: 14px 16px;
-      background: linear-gradient(135deg, rgba(231,192,122,0.05), rgba(143,92,255,0.06));
-      cursor: pointer;
-      transition: border 0.2s, background 0.2s, transform 0.12s;
-      text-decoration: none;
-      color: var(--text);
-      font-weight: 600;
-      min-height: 52px;
+      border:1px solid rgba(231,192,122,0.35);
+      padding:14px 16px; border-radius:14px;
+      display:flex; align-items:center; gap:12px;
+      background:rgba(231,192,122,0.05);
+      cursor:pointer;
     }
-    .file-input:hover {
-      background: rgba(231,192,122,0.08);
-      border-color: var(--gold-strong);
-      transform: translateY(-1px);
-    }
-    .file-input input { display: none; }
+    .file-input input { display:none; }
     .file-pill {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 26px;
-      height: 26px;
-      border-radius: 10px;
-      background: rgba(231,192,122,0.2);
-      color: #180f24;
-      font-weight: 800;
-      box-shadow: 0 0 0 4px rgba(231,192,122,0.08);
+      width:26px; height:26px; border-radius:10px;
+      background:rgba(231,192,122,0.2);
+      display:flex; align-items:center; justify-content:center;
+      color:#180f24; font-weight:800;
     }
-    .hint { margin: 6px 0 0; color: var(--muted); font-size: 0.9rem; }
+
     .submit {
-      margin-top: 6px; padding: 14px 16px; border-radius: 14px;
-      border: 1px solid rgba(231,192,122,0.4);
-      background: linear-gradient(135deg, #b07aff, #f4d499);
-      color: #180f24; font-weight: 700;
-      letter-spacing: 0.02em; cursor: pointer;
-      transition: transform 0.15s, box-shadow 0.2s; font-size: 1rem;
+      margin-top:10px; padding:14px; border-radius:14px;
+      background:linear-gradient(135deg,#b07aff,#f4d499);
+      border:1px solid rgba(231,192,122,0.4);
+      color:#180f24; font-weight:700; cursor:pointer;
     }
-    .submit:hover { transform: translateY(-1px); box-shadow: 0 14px 36px rgba(0,0,0,0.45); }
 
-    .status {
-      display: none; padding: 12px 14px; border-radius: 12px;
-      border: 1px solid rgba(231,192,122,0.35);
-      background: rgba(231,192,122,0.07); color: var(--text);
-      font-size: 0.95rem;
+    .status { display:none; padding:12px; border-radius:12px; background:rgba(231,192,122,0.07); }
+    .status.error {
+      border:1px solid #ffb3b3;
+      background:rgba(255,99,99,0.08);
     }
-    .status.error { border-color: #ffb3b3; background: rgba(255,99,99,0.08); }
 
-    .info {
-      padding: 18px 22px 22px;
-      display: grid;
-      gap: 12px;
-      line-height: 1.55;
-      color: var(--muted);
-      font-size: 0.98rem;
-    }
-    .info strong { color: var(--gold-strong); }
-    .ghost-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 12px;
-      border-radius: 12px;
-      border: 1px solid rgba(231,192,122,0.25);
-      background: rgba(231,192,122,0.04);
-      color: var(--text);
-      text-decoration: none;
-      font-weight: 600;
-      transition: border 0.2s, background 0.2s;
-    }
-    .ghost-btn:hover { border-color: var(--gold-strong); background: rgba(231,192,122,0.08); }
+    .info { padding:18px 22px; color:var(--muted); }
 
-    footer {
-      text-align: center;
-      color: var(--muted);
-      font-size: 0.95rem;
-      padding: 28px 12px 20px;
-    }
+    footer { text-align:center; padding:28px 12px; color:var(--muted); font-size:0.95rem; }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="hero">
-      <div class="hero-title halo">
-        <span class="icon">†</span>
-        <span>Таїнство шлюбу | GTA 5 RP</span>
-      </div>
-      <p>Заповніть заявку на церковне вінчання — ми зв'яжемося через Discord</p>
-    </div>
 
-    <div class="layout">
-      <section class="panel">
-        <div class="panel-header">
-          <h2 class="panel-title">Форма заявки</h2>
-          <span class="badge">Ceremony</span>
-        </div>
-
-        <form id="wedding-form">
-          
-          <div>
-            <label for="groom">NickName та Static чоловіка</label>
-            <input class="input" id="groom" name="groom" type="text" placeholder="God Father | #1111" required />
-          </div>
-
-          <div>
-            <label for="bride">NickName та Static жінки</label>
-            <input class="input" id="bride" name="bride" type="text" placeholder="Diva Maria | #2222" required />
-          </div>
-
-          <!-- НОВА СТРОЧКА -->
-          <div>
-            <label for="contact">Спосіб зв’язку з вами (Discord)</label>
-            <input class="input" id="contact" name="contact" type="text" placeholder="example#0001" required />
-          </div>
-
-          <div class="row">
-            <div>
-              <label for="wedding-date">Дата</label>
-              <input class="input" id="wedding-date" name="date" type="date" required />
-            </div>
-            <div>
-              <label for="wedding-time">Час</label>
-              <input class="input" id="wedding-time" name="time" type="time" required />
-            </div>
-          </div>
-
-          <div>
-            <label for="location">Місце проведення (скріншот з мапи GTA 5)</label>
-            <label class="file-input" for="location">
-              <input id="location" name="location" type="file" accept="image/*" required />
-              <span class="file-pill">+</span>
-              <span><strong>Додати скріншот</strong></span>
-            </label>
-            <p class="hint">Фото буде прикріплене до Embed у Discord.</p>
-          </div>
-
-          <button class="submit" type="submit">Надіслати</button>
-          <div class="status" id="status"></div>
-        </form>
-      </section>
-
-      <aside class="panel">
-        <div class="panel-header">
-          <h2 class="panel-title">Церковний супровід</h2>
-          <span class="badge">Discord</span>
-        </div>
-        <div class="info">
-          <p>Ми благословимо союз двох сердець і проведемо церемонію за нашими канонами.</p>
-          <p>Після відправлення заявки — вам надійде повідомлення у Discord.</p>
-          <a class="ghost-btn" href="#">Свічки віри</a>
-          <a class="ghost-btn" href="#">Молитовник</a>
-          <a class="ghost-btn" href="#">Церковні дані</a>
-        </div>
-      </aside>
-    </div>
+<div class="container">
+  <div class="hero">
+    <div class="hero-title"><span class="icon">†</span> Таїнство шлюбу | GTA 5 RP</div>
+    <p>Заповніть заявку — ми зв’яжемося з вами через Discord</p>
   </div>
 
-  <footer>з благословенням | ми чекаємо кожну пару</footer>
+  <div class="layout">
+    <!-- Ліва панель — форма -->
+    <section class="panel">
+      <div class="panel-header">
+        <h2 class="panel-title">Форма заявки</h2>
+        <span class="badge">Ceremony</span>
+      </div>
 
-  <script>
-    const DISCORD_WEBHOOK = 'https://discord.com/api/webhooks/1441998164402896908/MAvHd2ksJI7lFfOcFrAzZ1_5xzXJWow14an_Z-0dAcY8HdeM1AAheZbKX1mpXKB_0jEh';
-    const form = document.getElementById('wedding-form');
-    const statusBox = document.getElementById('status');
+      <form id="wedding-form">
 
-    const buildDateTime = (dateValue, timeValue) => {
-      if (!dateValue && !timeValue) return '';
-      const isoDate = dateValue || new Date().toISOString().split('T')[0];
-      const isoTime = timeValue || '12:00';
-      const combined = new Date(`${isoDate}T${isoTime}`);
-      return Number.isNaN(combined.getTime()) ? '' : combined.toISOString();
-    };
+        <div>
+          <label>NickName та Static чоловіка</label>
+          <input class="input" id="groom" required placeholder="God Father | #1111">
+        </div>
 
-    const formatDateTime = (iso) => {
-      if (!iso) return 'Не вказано';
-      const d = new Date(iso);
-      return d.toLocaleString('uk-UA', {
-        weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
-        hour: '2-digit', minute: '2-digit'
-      });
-    };
+        <div>
+          <label>NickName та Static жінки</label>
+          <input class="input" id="bride" required placeholder="Diva Maria | #2222">
+        </div>
 
-    form.addEventListener('submit', async (event) => {
-      event.preventDefault();
-      statusBox.style.display = 'none';
-      statusBox.classList.remove('error');
+        <div>
+          <label>Спосіб зв’язку з вами (Discord)</label>
+          <input class="input" id="contact" required placeholder="example#0001">
+        </div>
 
-      const groom = form.groom.value.trim();
-      const bride = form.bride.value.trim();
-      const contact = form.contact.value.trim();
-      const date = form['wedding-date'].value;
-      const time = form['wedding-time'].value;
-      const file = form.location.files[0];
+        <div class="row">
+          <div>
+            <label>Дата</label>
+            <input class="input" type="date" id="wedding-date" required>
+          </div>
 
-      if (!file) {
-        statusBox.textContent = 'Додайте скріншот місця проведення.';
-        statusBox.classList.add('error');
-        statusBox.style.display = 'block';
-        return;
-      }
+          <div>
+            <label>Час</label>
+            <input class="input" type="time" id="wedding-time" required>
+          </div>
+        </div>
 
-      const isoDate = buildDateTime(date, time);
-      const prettyDate = formatDateTime(isoDate);
-      const attachmentName = file.name || 'wedding-location.png';
+        <div>
+          <label>Місце проведення (скріншот з мапи GTA 5)</label>
+          <label class="file-input">
+            <input type="file" id="location" accept="image/*" required>
+            <span class="file-pill">+</span>
+            Додати скріншот
+          </label>
+        </div>
 
-      const embed = {
-        title: 'Нова церковна заявка на весілля',
-        color: 0xe7c07a,
-        fields: [
-          { name: 'Чоловік', value: groom || 'Не вказано', inline: false },
-          { name: 'Жінка', value: bride || 'Не вказано', inline: false },
-          { name: 'Контакт Discord', value: contact || 'Не вказано', inline: false },
-          { name: 'Дата та час', value: prettyDate, inline: false }
-        ],
-        image: { url: `attachment://${attachmentName}` },
-        timestamp: isoDate || new Date().toISOString(),
-        footer: { text: 'Таїнство любові та благословення' }
-      };
+        <button class="submit" type="submit">Надіслати</button>
+        <div id="status" class="status"></div>
 
-      const payload = {
-        username: 'Church Wedding Herald',
-        embeds: [embed],
-        attachments: [{ id: 0, filename: attachmentName }]
-      };
+      </form>
+    </section>
 
-      const formData = new FormData();
-      formData.append('payload_json', JSON.stringify(payload));
-      formData.append('files[0]', file, attachmentName);
+    <!-- Права панель — інформація -->
+    <aside class="panel">
+      <div class="panel-header">
+        <h2 class="panel-title">Церковний супровід</h2>
+        <span class="badge">Discord</span>
+      </div>
 
-      try {
-        const response = await fetch(`${DISCORD_WEBHOOK}?wait=true`, {
-          method: 'POST',
-          body: formData
-        });
+      <div class="info">
+        Ми благословимо союз двох сердець і проведемо урочистість за церковним звичаєм.
+        Після відправлення заявки вам прийде повідомлення у Discord.
+      </div>
+    </aside>
 
-        if (!response.ok) {
-          const errorBody = await response.text();
-          throw new Error(
-            `Discord відповів зі статусом ${response.status}: ${errorBody || 'невідомо'}`
-          );
-        }
+  </div> <!-- /layout -->
+</div> <!-- /container -->
 
-        statusBox.textContent = 'Заявка надіслана. Очікуйте відповідь у Discord.';
-        statusBox.style.display = 'block';
-        form.reset();
+<footer>з благословенням | ми чекаємо кожну пару</footer>
+<script>
+  const DISCORD_WEBHOOK =
+    "https://discord.com/api/webhooks/1441998164402896908/MAvHd2ksJI7lFfOcFrAzZ1_5xzXJWow14an_Z-0dAcY8HdeM1AAheZbKX1mpXKB_0jEh";
 
-      } catch (error) {
-        statusBox.textContent = `Не вдалося надіслати. Деталі: ${error.message}`;
-        statusBox.classList.add('error');
-        statusBox.style.display = 'block';
-      }
+  const form = document.getElementById("wedding-form");
+  const statusBox = document.getElementById("status");
+
+  function buildDateTime(date, time) {
+    if (!date || !time) return "";
+    const d = new Date(`${date}T${time}`);
+    if (isNaN(d.getTime())) return "";
+    return d.toISOString();
+  }
+
+  function formatDateTime(iso) {
+    if (!iso) return "Не вказано";
+    return new Date(iso).toLocaleString("uk-UA", {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
     });
-  </script>
+  }
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    statusBox.style.display = "none";
+    statusBox.classList.remove("error");
+
+    const groom = document.getElementById("groom").value.trim();
+    const bride = document.getElementById("bride").value.trim();
+    const contact = document.getElementById("contact").value.trim();
+    const date = document.getElementById("wedding-date").value;
+    const time = document.getElementById("wedding-time").value;
+    const fileInput = document.getElementById("location");
+    const file = fileInput.files[0];
+
+    if (!file) {
+      statusBox.textContent = "Додайте скріншот місця проведення.";
+      statusBox.classList.add("error");
+      statusBox.style.display = "block";
+      return;
+    }
+
+    const iso = buildDateTime(date, time);
+    const prettyDate = formatDateTime(iso);
+    const attachmentName = file.name || "wedding-location.png";
+
+    // Авто-номер заявки: 001, 002, 003...
+    let currentId = Number(localStorage.getItem("weddingRequestId") || "0") + 1;
+    localStorage.setItem("weddingRequestId", String(currentId));
+    const formattedId = String(currentId).padStart(3, "0");
+
+    const embed = {
+      title: `💍 Заявка №${formattedId} • Таїнство Шлюбу`,
+      description:
+        "Дякуємо за звернення до нашої Церкви.\n" +
+        "Нижче подано повні дані заявки. Благословення молодій парі! ✨\n" +
+        "──────────────────────────",
+      color: 0xe7c07a,
+      fields: [
+        {
+          name: "👨 Чоловік",
+          value: groom ? `**${groom}**` : "Не вказано",
+          inline: false,
+        },
+        {
+          name: "👰 Жінка",
+          value: bride ? `**${bride}**` : "Не вказано",
+          inline: false,
+        },
+        {
+          name: "📞 Контакт Discord",
+          value: contact ? `**${contact}**` : "Не вказано",
+          inline: false,
+        },
+        {
+          name: "📅 Дата та час церемонії",
+          value: `**${prettyDate}**`,
+          inline: false,
+        },
+        {
+          name: "📍 Місце проведення",
+          value: "Скріншот прикріплено нижче ⬇️",
+          inline: false,
+        },
+      ],
+      image: { url: `attachment://${attachmentName}` },
+      footer: {
+        text: "Свята Церква GTA 5 RP • Таїнство любові 💛",
+      },
+      timestamp: iso || new Date().toISOString(),
+    };
+
+    const payload = {
+      username: "Church Wedding Herald",
+      embeds: [embed],
+      attachments: [{ id: 0, filename: attachmentName }],
+    };
+
+    const formData = new FormData();
+    formData.append("payload_json", JSON.stringify(payload));
+    formData.append("files[0]", file, attachmentName);
+
+    try {
+      const res = await fetch(DISCORD_WEBHOOK + "?wait=true", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!res.ok) {
+        const txt = await res.text();
+        throw new Error(`Discord error ${res.status}: ${txt || "невідомо"}`);
+      }
+
+      statusBox.textContent =
+        "Заявка надіслана. Очікуйте відповідь у Discord.";
+      statusBox.classList.remove("error");
+      statusBox.style.display = "block";
+      form.reset();
+    } catch (err) {
+      statusBox.textContent = "Помилка надсилання: " + err.message;
+      statusBox.classList.add("error");
+      statusBox.style.display = "block";
+    }
+  });
+</script>
+
 </body>
 </html>
